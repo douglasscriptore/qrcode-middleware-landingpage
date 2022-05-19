@@ -21,8 +21,13 @@ const Home: NextPage = () => {
         break;
       case "ANDROID":
         setTimeout(function () {
+          var now = new Date().valueOf();
           if (new Date().valueOf() - now > 100) return;
+            try{
+              router.push("market://details?id==com.instagram.android")
+            }catch{
              router.push("https://play.google.com/store/apps/details?id=com.instagram.android")
+            }
           }, 25);
             router.push("instagram://")
         break;
