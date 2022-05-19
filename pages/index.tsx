@@ -9,7 +9,7 @@ type IOsTypes = 'IOS' | "ANDROID" | "WindowsPhone" | "Windows" | "MAC_OS"
 const redirects = {
   ios: {
     scheme: "instagram://",
-    appstoreurl: "https://apps.apple.com/us/app/instagram",
+    appstoreurl: "https://apps.apple.com/us/app/instagram/id389801252",
     appmarket: ""
   },
   android: {
