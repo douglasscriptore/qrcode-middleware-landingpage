@@ -6,41 +6,47 @@ import * as device from "react-device-detect"
 
 type IOsTypes = 'IOS' | "ANDROID" | "WindowsPhone" | "Windows" | "MAC_OS"
 
+const redirects = {
+  ios: {
+    scheme: "instagram://",
+    appstoreurl: "https://apps.apple.com/us/app/instagram",
+    appmarket: ""
+  },
+  android: {
+    scheme: "instagram://",
+    appstoreurl: "https://play.google.com/store/apps/details?id=com.instagram.android",
+    appmarket: "market://details?id==com.instagram.android"
+  },
+  unsupport: {
+    scheme: "",
+    appstoreurl: "",
+    appmarket: ""
+  }
+}
+
 const Home: NextPage = () => {
   const router = useRouter();
   useEffect(() => {
-    const os = device.osName.toUpperCase() as IOsTypes
-    switch (os) {
-      case "IOS":
+    const systemType = device.isIOS ? "ios" : device.isAndroid ? "android" : "unsupport"
+
+    if(systemType === "unsupport") {
+      alert("Redicionar para tela de download")
+    }
+
+    const link = redirects[systemType]
+
         var now = new Date().valueOf();
         setTimeout(function () {
             if (new Date().valueOf() - now > 100) return;
-               router.push("https://itunes.apple.com/instagram")
-            }, 25);
-              router.push("instagram://")
-        break;
-      case "ANDROID":
-        setTimeout(function () {
-          var now = new Date().valueOf();
-          if (new Date().valueOf() - now > 100) return;
             try{
-              router.push("market://details?id==com.instagram.android")
+              router.push(link.appmarket)
             }catch{
-             router.push("https://play.google.com/store/apps/details?id=com.instagram.android")
+              router.push(link.appstoreurl)
             }
-          }, 25);
-            router.push("instagram://")
-        break;
-      default:
-          alert(`Fazer pagina de download do app ${os}`)
-        break;
-    }
-    
+            }, 25);
+              router.push(link.scheme)
   },[router]);
 
-  // useMemo(() => {
-  //   console.log(isIOS)
-  // },[])
 
   return (
     <h1>Hello World</h1>
