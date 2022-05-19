@@ -45,11 +45,11 @@ const Home: NextPage = () => {
             }
             }, 25);
               router.push(link.scheme)
-  },[router]);
+  },[]);
 
 
   return (
-    <h1>Hello World</h1>
+    <h1>Hello Test</h1>
   )
 }
 
