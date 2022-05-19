@@ -38,11 +38,11 @@ const Home: NextPage = () => {
         var now = new Date().valueOf();
         setTimeout(function () {
             if (new Date().valueOf() - now > 100) return;
-            try{
-              router.push(link.appmarket)
-            }catch{
+            // try{
+              // router.push(link.appmarket)
+            // }catch{
               router.push(link.appstoreurl)
-            }
+            // }
             }, 25);
               router.push(link.scheme)
   },[]);
